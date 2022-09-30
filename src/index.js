@@ -13,10 +13,10 @@ connectDB()
 
 // app.use("/api/v1/auth", router);
 app.get('/',(req,res)=>{
-    res.send('Hello Abhishek!')
+    res.send('Hello Abhishek! V2')
 })
 app.get('/auth',(req,res)=>{
-    res.send('Hello I Am Backend!')
+    res.send('Hello I Am Backend! V2')
 })
 
 app.listen(PORT, () => {

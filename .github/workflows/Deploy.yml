@@ -1,0 +1,29 @@
+name: Deploy code to heroku
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - "src/*"
+      - ".github/workflows/Deploy.yml"
+
+jobs:
+  play:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use node
+        uses: actions/setup-node@v3
+        with: 
+          node-version: 16
+      - run: npm install
+      - run: npm run build
+      - name: Deploy to heroku
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+           heroku_api_key: 'cb1dce94-915c-49a2-b50e-34432a29fbaa'
+           heroku_app_name: 'imagal-backend'
+           heroku_email: 'akstyles27@gmail.com'   
+
+
