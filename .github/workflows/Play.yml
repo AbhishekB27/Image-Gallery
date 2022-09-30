@@ -11,6 +11,6 @@ on:
 jobs:
   play:
     runs-on: ubuntu-latest
-    stemps:
+    steps:
       -name: Play with workflows
       run: echo "running with workflows"
