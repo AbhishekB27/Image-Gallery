@@ -12,5 +12,5 @@ jobs:
   play:
     runs-on: ubuntu-latest
     steps:
-      - name: Play with workflows
-      run: echo "running with workflows"
+      - name: Playing with workflows
+        run: echo "running with workflows"
