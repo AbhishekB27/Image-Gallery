@@ -1,0 +1,16 @@
+name: Playing with workflows
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - "src/*"
+      - ".github/workflows/Play.yml"
+
+jobs:
+  play:
+    runs-on: ubuntu-latest
+    stemps:
+      -name: Play with workflows
+      run: echo "running with workflows"
