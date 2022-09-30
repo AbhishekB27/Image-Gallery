@@ -11,7 +11,13 @@ app.use(express.json()); // body parser middleware
 app.use(cors());
 connectDB()
 
-app.use("/api/v1/auth", router);
+// app.use("/api/v1/auth", router);
+app.get('/',(req,res)=>{
+    res.send('Hello Abhishek!')
+})
+app.get('/auth',(req,res)=>{
+    res.send('Hello I Am Backend!')
+})
 
 app.listen(PORT, () => {
   console.log(`Server is running on ${PORT}`);
