@@ -1,29 +1,30 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const ImageSchema = new mongoose.Schema({
-    imageName:{
-        type:String,
-        required:true,
+  imageUrl:{
+      type: String,
+      required: true,
+      unique: true
     },
-    imageDescription:{
-        type:String,
-        required:true,
-    },
-    imageUrl:{
-        type:String,
-        required:true
-    },
-    pubished:{
-        tyep:Date,
-        required:true
-    },
-    user:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref:'User'
-    },
-    collection:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref:'Collection'
-    },
+  created: {
+    type: Date,
+    default: Date.now,
+  },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
+  category: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Category",
+  },
+  review:[{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Review",
+  }],
+  likes:{
+    type: Number,
+    // ref: "Like",
+  }
 });
-export const Images = new mongoose.Model('Images', ImageSchema)
+export const ImageReservoir = new mongoose.model("ImageReservoir", ImageSchema);

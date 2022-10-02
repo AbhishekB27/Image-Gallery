@@ -2,8 +2,9 @@ import express from "express";
 import { body, validationResult } from "express-validator";
 import { createJWT, verifyJWT } from "../helper/jwt";
 import { verifyPassword } from "../helper/util";
-import { User } from "../Services/mongodb/models/User";
-const router = express.Router();
+import { User } from "../Services/mongodb";
+// import { User } from "../Services/mongodb/models/User";
+const router1 = express.Router();
 
 let message = {
   status: "",
@@ -12,7 +13,7 @@ let message = {
 };
 
 //signUp route
-router.post(
+router1.post(
   "/signUp",
   body("avtar").isURL(),
   body("userName").isLength({ min: 3 }),
@@ -36,7 +37,7 @@ router.post(
       message = {
         status: "Failed",
         data: errors,
-        message: errors[0].msg,
+        message: `${errors[0].msg} 😒`,
       };
       return res.json(message);
     }
@@ -53,11 +54,11 @@ router.post(
       } = req.body;
       const oldUser = await User.findOne({ email: email }); // findOne method returns a user object but find method returns array users
       console.log(oldUser);
-      if (oldUser.length != 0) {
+      if (oldUser != null) {
         message = {
           status: "Failed",
-          data: user,
-          message: "User Already Exists",
+          data: null,
+          message: "User Already Exists 🤷‍♂️",
         };
         return res.json(message);
       }
@@ -82,7 +83,7 @@ router.post(
       message = {
         status: "Failed",
         data: null,
-        message: error.message,
+        message: `${error.message} 😟`,
       };
       res.json(error.message);
     }
@@ -90,7 +91,7 @@ router.post(
 );
 
 //login route
-router.post(
+router1.post(
   "/login",
   body("email").isEmail(),
   body("password").isLength({ min: 8 }),
@@ -101,7 +102,7 @@ router.post(
       message = {
         status: "Failed",
         data: errors,
-        message: errors[0].msg,
+        message: `${errors[0].msg} 😒`,
       };
       return res.json(message);
     }
@@ -111,7 +112,7 @@ router.post(
         message = {
           status: "Failed",
           data: null,
-          message: "User Not Found Plz Sign UP",
+          message: "User Not Found Plz Sign UP 🤦‍♀️",
         };
         return res.json(message);
       }
@@ -121,7 +122,7 @@ router.post(
         message = {
           status: "Success",
           data: { user: user, token: token },
-          message: "Login Successful",
+          message: "Login Successful 😊",
         };
         return res.json(message);
       } else {
@@ -134,12 +135,18 @@ router.post(
       }
     } catch (error) {
       console.log("Error: " + error.message);
+      message = {
+        status: "Failed",
+        data: null,
+        message: `${error.message} 😟`,
+      };
+      return res.json(message);
     }
   }
 );
 
 // this route for verify token
-router.get("/verify/:token", async (req, res) => {
+router1.get("/verify/:token", async (req, res) => {
   try {
     const data = verifyJWT(req.params.token);
     if (data) {
@@ -152,7 +159,7 @@ router.get("/verify/:token", async (req, res) => {
       message = {
         status: "Failed",
         data: data,
-        message: "Token Expired Log In Again",
+        message: "Token Expired Log In Again 😟",
       };
     }
     res.json(message);
@@ -161,30 +168,30 @@ router.get("/verify/:token", async (req, res) => {
     message = {
       status: "Failed",
       data: null,
-      message: error.message,
+      message: `${error.message} 😟`,
     };
     res.json(message);
   }
 });
 
 // this route for get a all users
-router.get('/users',async(req,res)=>{
+router1.get('/users',async(req,res)=>{
     try {
         const users = await User.find({})
         message ={
             status: 'Success',
             data:users,
-            message: 'Successfully Fetched Users'
+            message: 'Successfully Fetched Users 😊'
         } 
         res.json(message)
     } catch (error) {
         message ={
             status: 'Failed',
             data:null,
-            message: error.message
+            message: `${error.message} 😟`
         } 
         res.json(message)
         console.log(error.message)
     }
 })
-export default router;
+export default router1;

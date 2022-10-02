@@ -1,3 +1,4 @@
+# we can make a comment in .yml file by adding # in front starting of comment like this
 name: Deploy code to heroku
 
 on:

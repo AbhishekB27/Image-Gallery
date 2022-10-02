@@ -1,17 +1,18 @@
 import mongoose from 'mongoose';
 
 const ReviewSchema = new mongoose.Schema({
-    title:{
-        type:String,
+    stars: {
+      type: Number,
+      required: true
     },
-    description:{
-        type:String,
-        required:true
+    review: {
+      type: String,
+      required: true
     },
-    image:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref:'Images'
-    },
-});
+    user:{
+      type: mongoose.Schema.Types.ObjectId,
+      ref:'User'
+    }
+  });
 
-export const Review = new mongoose.Model('Review', ReviewSchema)
+export const Review = new mongoose.model('Review', ReviewSchema)
