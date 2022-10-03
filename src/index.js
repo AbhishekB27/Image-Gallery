@@ -16,7 +16,7 @@ connectDB()
 
 app.use("/api/v1/auth", router1);
 app.use("/api/v1/category", router2);
-app.use("/api/v1/imageUpload", router3);
+app.use("/api/v1/images", router3);
 app.use("/api/v1/reviews", router4);
 
 
