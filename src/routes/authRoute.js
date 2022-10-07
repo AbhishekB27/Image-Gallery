@@ -150,9 +150,10 @@ router1.get("/verify/:token", async (req, res) => {
   try {
     const data = verifyJWT(req.params.token);
     if (data) {
+      const user = await User.findOne({_id:data.id})
       message = {
         status: "Success",
-        data: { token: req.params.token, user: data },
+        data: { token: req.params.token, user: user },
         message: "Successfull",
       };
     } else {
