@@ -15,13 +15,13 @@ let message = {
 //signUp route
 router1.post(
   "/signUp",
-  body("avtar").isURL(),
+  // body("avtar").isURL(),
   body("userName").isLength({ min: 3 }),
   body("firstName").isLength({ min: 3 }),
   body("lastName").isLength({ min: 3 }),
   body("email").isEmail(),
   body("password").isLength({ min: 8 }),
-  body("cPassword")
+  body("confirmPassword")
     .custom((value, { req }) => {
       if (value === req.body.password) {
         return true;
@@ -29,7 +29,7 @@ router1.post(
       return false;
     })
     .withMessage("Password Does not matched"),
-  body("designation").isLength({ min: 3 }),
+  // body("designation").isLength({ min: 3 }),
   async (req, res) => {
     const { errors } = validationResult(req);
 
@@ -49,7 +49,7 @@ router1.post(
         lastName,
         email,
         password,
-        cPassword,
+        confirmPassword,
         designation,
       } = req.body;
       const oldUser = await User.findOne({ email: email }); // findOne method returns a user object but find method returns array users
@@ -75,7 +75,7 @@ router1.post(
       message = {
         status: "Success",
         data: user,
-        message: "Welcome!😊",
+        message: "Successfully Created User😊",
       };
       res.json(message);
     } catch (error) {

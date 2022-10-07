@@ -14,18 +14,18 @@ app.use(express.json()); // body parser middleware
 app.use(cors());
 connectDB()
 
-app.use("/api/v1/auth", router1);
-app.use("/api/v1/category", router2);
-app.use("/api/v1/images", router3);
-app.use("/api/v1/reviews", router4);
+// app.use("/api/v1/auth", router1);
+// app.use("/api/v1/category", router2);
+// app.use("/api/v1/images", router3);
+// app.use("/api/v1/reviews", router4);
 
 
-// app.get('/',(req,res)=>{
-//     res.send('Hello Abhishek! V2')
-// })
-// app.get('/auth',(req,res)=>{
-//     res.send('Hello I Am Backend! V2')
-// })
+app.get('/',(req,res)=>{
+    res.send('Hello Abhishek! V2')
+})
+app.get('/auth',(req,res)=>{
+    res.send('Hello I Am Backend! V2')
+})
 
 app.listen(PORT, () => {
   console.log(`Server is running on ${PORT}`);

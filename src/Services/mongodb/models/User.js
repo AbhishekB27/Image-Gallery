@@ -4,6 +4,7 @@ import { hashPassword } from "../../../helper/util";
 const UserSchema = new mongoose.Schema({
   avtar: {
     type: String,
+    default: null
   },
   userName: {
     type: String,
@@ -30,6 +31,7 @@ const UserSchema = new mongoose.Schema({
   },
   designation: {
     type: String,
+    default: null
   },
 });
 
