@@ -75,7 +75,7 @@ router1.post(
       message = {
         status: "Success",
         data: user,
-        message: "Successfully Created User😊",
+        message: "Successfully Created😊",
       };
       res.json(message);
     } catch (error) {
@@ -122,7 +122,7 @@ router1.post(
         message = {
           status: "Success",
           data: { user: user, token: token },
-          message: "Login Successful 😊",
+          message: "Welcome 😊",
         };
         return res.json(message);
       } else {
@@ -160,7 +160,7 @@ router1.get("/verify/:token", async (req, res) => {
       message = {
         status: "Failed",
         data: data,
-        message: "Token Expired Log In Again 😟",
+        message: "Token Expired😟",
       };
     }
     res.json(message);
