@@ -196,5 +196,30 @@ router1.get("/users", async (req, res) => {
   }
 });
 
-
+//Update Route
+router1.put("/update", async (req, res) => {
+  const data = req.body;
+  // console.log(data)
+  try {
+    const userExist = await User.findOne({ _id: data.id });
+    if (userExist) {
+      await User.updateOne({ ...userExist }, { ...data });
+      const updatedUser = await User.findOne({ _id: data.id });
+      message = {
+        status: "Success",
+        data: updatedUser,
+        message: "Updated😊",
+      };
+      res.json(message);
+    }
+  } catch (error) {
+    message = {
+      status: "Failed",
+      data: null,
+      message: `${error.message}😟`,
+    };
+    res.json(message);
+    console.log(error.message);
+  }
+});
 export default router1;
