@@ -150,7 +150,7 @@ router1.get("/verify/:token", async (req, res) => {
   try {
     const data = verifyJWT(req.params.token);
     if (data) {
-      const user = await User.findOne({_id:data.id})
+      const user = await User.findOne({ _id: data.id });
       message = {
         status: "Success",
         data: { token: req.params.token, user: user },
@@ -176,23 +176,50 @@ router1.get("/verify/:token", async (req, res) => {
 });
 
 // this route for get a all users
-router1.get('/users',async(req,res)=>{
-    try {
-        const users = await User.find({})
-        message ={
-            status: 'Success',
-            data:users,
-            message: 'Successfully Fetched Users 😊'
-        } 
-        res.json(message)
-    } catch (error) {
-        message ={
-            status: 'Failed',
-            data:null,
-            message: `${error.message} 😟`
-        } 
-        res.json(message)
-        console.log(error.message)
+router1.get("/users", async (req, res) => {
+  try {
+    const users = await User.find({});
+    message = {
+      status: "Success",
+      data: users,
+      message: "Successfully Fetched Users 😊",
+    };
+    res.json(message);
+  } catch (error) {
+    message = {
+      status: "Failed",
+      data: null,
+      message: `${error.message} 😟`,
+    };
+    res.json(message);
+    console.log(error.message);
+  }
+});
+
+//Update Route
+router1.put("/update", async (req, res) => {
+  const data = req.body;
+  // console.log(data)
+  try {
+    const userExist = await User.findOne({ _id: data.id });
+    if (userExist) {
+      await User.updateOne({ ...userExist }, { ...data });
+      const updatedUser = await User.findOne({ _id: data.id });
+      message = {
+        status: "Success",
+        data: updatedUser,
+        message: "Successfully Updated😊",
+      };
+      res.json(message);
     }
-})
+  } catch (error) {
+    message = {
+      status: "Failed",
+      data: null,
+      message: `${error.message}😟`,
+    };
+    res.json(message);
+    console.log(error.message);
+  }
+});
 export default router1;
