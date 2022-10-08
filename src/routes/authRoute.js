@@ -208,7 +208,7 @@ router1.put("/update", async (req, res) => {
       message = {
         status: "Success",
         data: updatedUser,
-        message: "Successfully Updated😊",
+        message: "Updated😊",
       };
       res.json(message);
     }
