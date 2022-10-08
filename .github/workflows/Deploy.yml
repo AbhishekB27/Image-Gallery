@@ -21,7 +21,7 @@ jobs:
       - run: npm install
       - run: npm run build
       - name: Deploy to heroku
-        uses: akhileshns/heroku-deploy@v3.12.12
+        uses: CDNievas/heroku-action@v1.0
         with:
            heroku_api_key: 'cb1dce94-915c-49a2-b50e-34432a29fbaa'
            heroku_app_name: 'imagal-backend'
