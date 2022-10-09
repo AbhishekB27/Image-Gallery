@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const ReviewSchema = new mongoose.Schema({
     stars: {
       type: Number,
-      required: true
+      // required: true
     },
     review: {
       type: String,
