@@ -64,7 +64,7 @@ router3.get("/all", async (req, res) => {
     const images = await ImageReservoir.find({})
       .populate("user")
       .populate("review")
-      .populate("likes");
+      // .populate("likes");
     message = {
       status: "Success",
       data: images,

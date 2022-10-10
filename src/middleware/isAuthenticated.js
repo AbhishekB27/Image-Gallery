@@ -7,7 +7,8 @@ let message = {
 };
 const isAuthenticated = (req, res, next) => {
   try {
-    const token = req.headers.authorization.split(" ")[1];
+    const token = req.headers["x-access-token"] || req.headers["Authorization"];
+    // const token = req.headers.authorization.split(" ")[1];
     console.log(token)
     const decodedToken = verifyJWT(token);
     const userId = decodedToken.userId;
