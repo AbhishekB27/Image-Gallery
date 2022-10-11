@@ -14,7 +14,7 @@ let message = {
 router3.post(
   "/upload",
   isAuthenticated,
-  check("imageUrls[*]").isURL().withMessage("provide valid url"),
+  check("imgUrls[*]").isURL().withMessage("provide valid url"),
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -26,23 +26,24 @@ router3.post(
       return res.json(message);
     }
     try {
-      const { imageUrls, created, user, category } = req.body;
-      const asyncResult = await Promise.all(
-        imageUrls.map(async (item) => {
+      const { imgUrls, user, } = req.body;
+      console.log(req.body)
+      const asyncResult = Promise.all(
+        imgUrls.map(async (item) => {
           const images = new ImageReservoir({
             imageUrl: item,
-            created: created,
+            // created: created,
             user: user,
-            category: category,
+            // category: category,
           });
           await images.save();
           return images;
         })
       );
-      //  console.log(asyncResult);
+       console.log(await asyncResult);
       message = {
         status: "Success",
-        data: asyncResult,
+        data: await asyncResult,
         message: `Uploaded Successfully! 😊`,
       };
       return res.json(message);
@@ -50,7 +51,7 @@ router3.post(
       console.log(error.message);
       message = {
         status: "Failed",
-        data: imagesA,
+        data: null,
         message: `${error.message} 😊`,
       };
       return res.json(message);

@@ -24,7 +24,7 @@ jobs:
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
            heroku_api_key: 'cb1dce94-915c-49a2-b50e-34432a29fbaa'
-           heroku_app_name: 'imagal-backend'
+           heroku_app_name: 'amaze-amage'
            heroku_email: 'akstyles27@gmail.com'   
 
 
