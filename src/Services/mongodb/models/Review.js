@@ -12,6 +12,10 @@ const ReviewSchema = new mongoose.Schema({
     user:{
       type: mongoose.Schema.Types.ObjectId,
       ref:'User'
+    },
+    imgId:{
+      type: mongoose.Schema.Types.ObjectId,
+      ref:'ImageReservoir'
     }
   });
 
