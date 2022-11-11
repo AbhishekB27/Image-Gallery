@@ -3,6 +3,8 @@ import mongoose from 'mongoose';
 const CollectionSchema = new mongoose.Schema({
     cName:{
         type:String,
+        required: true,
+        unique: true
     },
     cDescription:{
         type:String,
@@ -15,7 +17,7 @@ const CollectionSchema = new mongoose.Schema({
      }   
     ]
     ,
-    user:{
+    userId:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'User'
     }

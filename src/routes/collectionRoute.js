@@ -14,7 +14,9 @@ router2.post('/add',
 body('cName').isLength({min:3}),
 body('cDescription').isLength({min:3}),
 async(req,res)=>{
-    const {cName, cDescription,user,imageUrl} = req.body
+    const {cName, cDescription,userId,imageUrls} = req.body
+    console.log(userId)
+    console.log(imageUrls)
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         message = {
@@ -34,7 +36,7 @@ async(req,res)=>{
               };
               return res.json(message);
         }
-        const collectionI = new CollectionI({cName,cDescription,user,imageUrls:imageUrl})
+        const collectionI = new CollectionI({cName,cDescription,userId,imageUrls})
         await collectionI.save();
         message = {
           status: "Success",
