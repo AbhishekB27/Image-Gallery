@@ -7,7 +7,8 @@ const ReviewSchema = new mongoose.Schema({
     },
     review: {
       type: String,
-      required: true
+      required: true,
+      unique:true
     },
     user:{
       type: mongoose.Schema.Types.ObjectId,

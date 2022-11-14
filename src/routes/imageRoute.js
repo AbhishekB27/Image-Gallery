@@ -26,7 +26,7 @@ router3.post(
       return res.json(message);
     }
     try {
-      const { imgUrls, user, } = req.body;
+      const { imgUrls, user,category } = req.body;
       console.log(req.body)
       const asyncResult = Promise.all(
         imgUrls.map(async (item) => {
@@ -34,7 +34,7 @@ router3.post(
             imageUrl: item,
             // created: created,
             user: user,
-            // category: category,
+            category: category,
           });
           await images.save();
           return images;
