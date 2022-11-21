@@ -14,8 +14,9 @@ let message = {
 router3.post(
   "/upload",
   isAuthenticated,
-  check("imgUrls[*]").isURL().withMessage("provide valid url"),
+  // check("imgURL").isURL().withMessage("provide valid url"),
   async (req, res) => {
+    // console.log(req.body)
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       message = {
@@ -26,15 +27,15 @@ router3.post(
       return res.json(message);
     }
     try {
-      const { imgUrls, user,category } = req.body;
+      const data = req.body;
       console.log(req.body)
       const asyncResult = Promise.all(
-        imgUrls.map(async (item) => {
+        data.map(async (item) => {
           const images = new ImageReservoir({
-            imageUrl: item,
-            // created: created,
-            user: user,
-            category: category,
+            imageUrl: item.imageUrl,
+            imageName: item.imageName,
+            user: item.user,
+            category: item.category,
           });
           await images.save();
           return images;

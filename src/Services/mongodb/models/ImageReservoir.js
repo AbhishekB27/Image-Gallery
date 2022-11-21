@@ -18,13 +18,13 @@ const ImageSchema = new mongoose.Schema({
     type:String,
     required: true
   },
-  review:[{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Review",
-  }],
-  likes:{
-    type: Number,
-    // ref: "Like",
-  }
+  // review:[{
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: "Review",
+  // }],
+  // likes:{
+  //   type: Number,
+  //   ref: "Like",
+  // }
 });
 export const ImageReservoir = new mongoose.model("ImageReservoir", ImageSchema);
