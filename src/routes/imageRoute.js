@@ -28,7 +28,7 @@ router3.post(
     }
     try {
       console.log(req.body)
-      const data = [...req.body];
+      const {data} = req.body
 
       // data.map(item => console.log(item.imageName))
       const asyncResult = Promise.all(
