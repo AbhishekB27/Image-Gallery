@@ -4,7 +4,7 @@ const ImageSchema = new mongoose.Schema({
   imageUrl:{
       type: String,
       required: true,
-      unique: true
+      // unique: true
     },
   created: {
     type: Date,

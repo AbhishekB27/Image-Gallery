@@ -28,7 +28,7 @@ router3.post(
     }
     try {
       const data = req.body;
-      console.log(req.body)
+      data.map(item => console.log(item.imageName))
       const asyncResult = Promise.all(
         data.map(async (item) => {
           const images = new ImageReservoir({
@@ -65,7 +65,7 @@ router3.get("/all", async (req, res) => {
   try {
     const images = await ImageReservoir.find({})
       .populate("user")
-      .populate("review")
+      // .populate("review")
       // .populate("likes");
     message = {
       status: "Success",
