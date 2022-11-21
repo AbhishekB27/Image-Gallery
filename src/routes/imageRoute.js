@@ -27,10 +27,12 @@ router3.post(
       return res.json(message);
     }
     try {
-      const data = req.body;
-      data.map(item => console.log(item.imageName))
+      console.log(req.body)
+      const data = [...req.body];
+
+      // data.map(item => console.log(item.imageName))
       const asyncResult = Promise.all(
-        data.map(async (item) => {
+        data.map( async (item) => {
           const images = new ImageReservoir({
             imageUrl: item.imageUrl,
             imageName: item.imageName,
@@ -41,7 +43,7 @@ router3.post(
           return images;
         })
       );
-       console.log(await asyncResult);
+      //  console.log(await asyncResult);
       message = {
         status: "Success",
         data: await asyncResult,
