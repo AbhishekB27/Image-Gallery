@@ -37,7 +37,7 @@ router1.post(
       message = {
         status: "Failed",
         data: errors,
-        message: `${errors[0].msg} 😒`,
+        message: `${errors} 😒`,
       };
       return res.json(message);
     }
@@ -198,12 +198,12 @@ router1.get("/users", async (req, res) => {
 
 //Update Route
 router1.put("/update", async (req, res) => {
-  const data = req.body;
+  const {name,url,id} = req.body;
   // console.log(data)
   try {
-    const userExist = await User.findOne({ _id: data.id });
+    const userExist = await User.findOne({ _id: id });
     if (userExist) {
-      await User.updateOne({ ...userExist }, { ...data });
+      await User.updateOne({ ...userExist }, { avtar:{name,url} });
       const updatedUser = await User.findOne({ _id: data.id });
       message = {
         status: "Success",
