@@ -204,7 +204,7 @@ router1.put("/update", async (req, res) => {
     const userExist = await User.findOne({ _id: id });
     if (userExist) {
       await User.updateOne({ ...userExist }, { avtar:{name,url} });
-      const updatedUser = await User.findOne({ _id: data.id });
+      const updatedUser = await User.findOne({ _id: id });
       message = {
         status: "Success",
         data: updatedUser,
